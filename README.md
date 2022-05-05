@@ -1365,43 +1365,748 @@ console.log(family);
   Village: 'Valrasaplayam'
 }
 ```
+## Accessing object properties ##
+
+* we can access the properties of objects using . and [] notations.
+* ObjectName.Property ;  OR   ObjectName["property"];
+
+```javascript
+let object = {
+    date : 10,
+    day : "Wednesday",
+    year : 2022,
+    message : "stay happy"
+}
+
+console.log(object);
+
+//Using .notation
+
+console.log(object.day);
+
+//Using [] notation
+
+console.log(object["date"]);
+console.log(object['message']);
+```
+* Output:
+
+```javascript
+{ date: 10, day: 'Wednesday', year: 2022, message: 'stay happy' }
+Wednesday
+10
+stay happy
+```
+## Update Object properties ##
+
+* We can update the properties of objects by assing new value to a current object property.
+
+* obj.property=Newvalue;
+
+* We can also add new object property by assinging the new property to new value.
+
+* obj.newProperty = newValue.
+
+```javascript
+let timetable = {
+    monday : "Music class",
+    Tuesday : "Dance class",
+    Wednesday : "Kungfu class",
+    Thursday : "Violin class",
+}
+console.log( "Object before any updation : \n",timetable);
+
+// Updating value of a existing property
+
+timetable.Wednesday="Singing class";
+console.log( "Object After Update new value to existing  property : \n",timetable);
+
+//Updating a property with new value
+
+timetable.Sunday = "Cooking class";
+console.log("Object After update new property : \n", timetable);
+```
+* Output:
+
+```javascript
+Object before any updation : 
+ {
+  monday: 'Music class',
+  Tuesday: 'Dance class',
+  Wednesday: 'Kungfu class',
+  Thursday: 'Violin class'
+}
+Object After Update new value to existing  property : 
+ {
+  monday: 'Music class',
+  Tuesday: 'Dance class',
+  Wednesday: 'Singing class',
+  Thursday: 'Violin class'
+}
+Object After update new property : 
+ {
+  monday: 'Music class',
+  Tuesday: 'Dance class',
+  Wednesday: 'Singing class',
+  Thursday: 'Violin class',
+  Sunday: 'Cooking class'
+}
+```
+## Delet object property ##
+* We can delete any object property by using delete objectName.Property method.
+
+```javascript
+var workers = {
+    w1 : "Logesh",
+    w2: "Vijay",
+    w3 : "Vikram"
+}
+
+console.log("Before deleting : \n", workers);
+
+delete workers.w1;
+
+console.log("After deleting : \n", workers);
+
+//Delete whole object
+
+delete workers;      //We can't delete whole object
+
+console.log("After deleting the object using delete it still shows the object \n ",workers);     
+```
+* Output:
+
+```javascript
+Before deleting : 
+ { w1: 'Logesh', w2: 'Vijay', w3: 'Vikram' }
+After deleting : 
+ { w2: 'Vijay', w3: 'Vikram' }
+After deleting the object using delete it still shows the object 
+  { w2: 'Vijay', w3: 'Vikram' }
+
+```
+## Lookup program ##
+
+```javascript
+function lookup(value){
+    var res;
+let dic = {
+    "apple" : "A fruit",
+    "Bring" : "fetch",
+    "cat"   : "An small animal",
+    "dig"   : "dig"
+};
+res=dic[value];
+return res;
+
+}
+console.log(lookup("apple"));
+console.log(lookup("cat"));
+```
+* Output:
+
+```javascript
+A fruit
+An small animal
+```
+## Tesing objects for proprty ##
+ * We can verify whether the particular proprty is available or not in the object using the hasOwnPrperty method.
+ * Syntax : objectName.hasOwnProperty(propertyname);
+
+```javascript
+function check(value){
+    var res;
+    let obj = {
+        1 : "v1",
+        2 : "v2",
+        "hi": 675,
+    }
+    res = obj[value];
+    if(obj.hasOwnProperty(value)){
+        return "Yes here it is :"+obj[value];
+    }
+    else{
+        return "No"
+    }
+}
+console.log(check(1));
+console.log(check(5));
+console.log(check("hello"));
+console.log(check("hi"));
+``` 
+* Output:
+
+```javascript
+Yes here it is :v1
+No
+No
+Yes here it is :675
+```
+## Objects inside array ##
+
+* We can insert many objects inside the array.
+
+### Ex ###
+
+```javascript
+let array = [
+    {
+        p1 : "Value",
+        p2 : "value",
+        p3 : [
+            1,2,3
+        ],
+        
+    },
+    {
+        p21 : "Value1",
+        p22 : "value2",
+        p23 : [
+            1,2,3,'j'
+        ],
+        
+    },
+];
+console.log(array);
+console.log(array[0]);
+console.log(array[1]);
+```
+* Output:
+
+```javascript
+[
+  { p1: 'Value', p2: 'value', p3: [ 1, 2, 3 ] },
+  { p21: 'Value1', p22: 'value2', p23: [ 1, 2, 3, 'j' ] }
+]
+{ p1: 'Value', p2: 'value', p3: [ 1, 2, 3 ] }
+{ p21: 'Value1', p22: 'value2', p23: [ 1, 2, 3, 'j' ] }
+```
+
+## Nested object ##
+
+* Object inside object is called nested object .
+
+* We can access the inner object properties through the sae . or [] notations
+
+```javascript
+let obj = {
+    nested : {
+        n1: "Value",
+        n1a : "Value",
+    },
+    normal1 : 2,
+    normal2: 5,
+}
+
+console.log(obj.nested.n1a);
+console.log(obj["nested"]["n1"]);
+```
+
+* Output:
+
+```javascript
+Value
+Value
+```
+## Accessing object properties inside array  ##
+
+* We can even access the object properties inside arrays using . and [] notations.
+
+```javascript
+let array = [
+    {
+        p1 : "Value",
+        p2 : "value",
+        p3 : [
+            1,2,3
+        ],
+        
+    },
+    {
+        p21 : "Value1",
+        p22 : "value2",
+        p23 : [
+            1,2,3,'j'
+        ],
+        
+    },
+];
+//access object proprties 
+
+console.log(array[1].p23);
+console.log(array[1].p23[3]);
+console.log(array[0]["p1"]);
+```
+* output:
+
+```javascript
+[ 1, 2, 3, 'j' ]
+j
+Value
+```
+
+## Record collection program ##
+
+```javascript
+var collection = {
+    "1" : {
+        "Name": "vijay",
+        "Things": ["bag,shirt"],
+    } ,
+    "2" : {
+        "Name": "Surya",
+        "age": 22,
+        "Things": ["bag,shirt","purse"],
+    } ,
+    "3" : {
+        "Name": "kumar",
+      
+    } ,
+    
+
+}
+
+var copy = JSON.parse(JSON.stringify(collection)); 
+
+function update(id,prop,value){
+    if(value===""){
+        delete collection[id][prop];
+    }
+    else if(prop==="Things"){
+        collection [id][prop] =  collection [id][prop] || [];
+        collection [id][prop].push(value);
+    }
+    
+
+    else {
+        if(id===collection[id]){
+        collection[id][prop]= value;
+        }
+      
+
+    }
+      return collection;
+}
+update("1","Name","");
+update("2","Name","Ashwin");
+update("3","Name","jo");
+update("3","Things","['a bag','a plate']");
+console.log("Original data :\n",copy);
+console.log("Updated data :\n",collection);
+```
+
+* Output:
+
+```javascript
+Original data :
+ {
+  '1': { Name: 'vijay', Things: [ 'bag,shirt' ] },
+  '2': { Name: 'Surya', age: 22, Things: [ 'bag,shirt', 'purse' ] },
+  '3': { Name: 'kumar' }
+}
+Updated data :
+ {
+  '1': { Things: [ 'bag,shirt' ] },
+  '2': { Name: 'Surya', age: 22, Things: [ 'bag,shirt', 'purse' ] },
+  '3': { Name: 'kumar', Things: [ "['a bag','a plate']" ] }
+}
+```
+### NOTE : JSON.parse method  ###
+
+* Use the JavaScript function JSON.parse() to convert text into a JavaScript object.
+* Make sure the text is in JSON format, or else you will get a syntax error.
+
+# loops #
+
+* lopps allow us to execute same code multiple times.
+
+## while ##
+
+* A while loop will iterate for an indefinite number of times until the specified condition (there is only one) evaluates to false.
+
+```javascript
+let arr=[];
+var i=0;
+
+while(i<5){
+    arr.push(i);
+    i++;
+
+}
+
+console.log(arr);
+```
+* Output:
+
+```javascript
+[ 0, 1, 2, 3, 4 ]
+```
+
+## for ##
+
+## Synatx ##
+
+<img src="images/forloop syntax.png" alt="Sorry" height="140" width="">
+
+### EX : ###
+
+```javascript
+let arr=[];
+for(let i=0;i<10;i++){
+    arr.push(i);
+}
+console.log(arr);
+```
+* Output:
+
+```javascript
+[
+  0, 1, 2, 3, 4,
+  5, 6, 7, 8, 9
+]
+```
+## Display odd array and even array using for loop ##
+
+```javascript
+let odd=[];
+for(let i=1;i<10;i+=2){
+    odd.push(i);
+}
+console.log("odd array : ", odd);
+
+let even=[];
+for(let i=0;i<10;i+=2){
+    even.push(i);
+}
+console.log("Even  Array " , even);
+```
+* Output:
+
+```javascript
+odd array :  [ 1, 3, 5, 7, 9 ]
+Even  Array  [ 0, 2, 4, 6, 8 ]
+```
+## count backword with for loop in array ##
+
+```javascript
+let nor=[];
+for(let i=10;i>0;i--){
+    nor.push(i);
+}
+console.log(nor);
+
+//reverse odd
+let odd=[];
+for(let i=9;i>0;i-=2){
+    odd.push(i);
+}
+console.log(odd);
+
+//reverse even
+let even = [];
+for(let i=10;i>1;i-=2){
+    even.push(i);
+}
+console.log(even);
+```
+* Output:
+
+```javascript
+[
+  10, 9, 8, 7, 6,
+   5, 4, 3, 2, 1
+]
+[ 9, 7, 5, 3, 1 ]
+[ 10, 8, 6, 4, 2 ]
+```
+
+## Array iteration with for loop ##
+
+```javascript
+let a = [1,2,3,4,5,100,1000];
+let t=0;
+for(let i=0;i<a.length;i++){
+    t=t+a[i];
+}
+console.log(t);
+```
+* Output:
+
+```javascript
+1115
+```
+## Nested array multiplication ##
+
+```javascript
+
+function mul(arr){
+    let res=1;
+    for(let i=0;i<arr.length;i++){
+        for(let j=0;j<arr[i].length;j++){
+        res *= arr[i][j];
+        }
+      }
+console.log(res);
+}
+mul([[1,1,36],[1,7],[10,78]]);
+```
+
+* Output:
+
+```javascript
+196560
+```
+## do while ##
+
+### Syntax ###
+
+```javascript
+
+do{
+  --- set of statements ---
+} while (condition);
+
+```
+* do - while atleaset executes the statements once even the condition is false.
+
+* It is slightly different from while.
+
+* The do-while loop is mostly used in menu-driven programs where the termination condition depends upon the end user.
+
+### EX : ###
+
+```javascript
+//do-while 
+let a = [];
+var i=0;
+do{
+  
+    a.push(i);
+    i++;
+
+}while(i>5)    // condition false but executed one time
+console.log(a);
+
+
+// while
+let b=[];
+var j=0;
+while(j>5){     // condition false so not executed 
+    b.push(j);
+    j++;
+
+}
+console.log(b);
+
+```
+* Output:
+
+```javascript
+[ 0 ]
+[]
+```
+
+## profile lookup program ##
+
+```javascript
+var contacts = [
+    {
+        "name" : "A",
+        "Number" : "1234567890",
+        "Likes" : ["book","food"]
+    },
+    {
+        "name" : "B",
+        "Number" : "4563782903",
+        "Likes" : ["swim"]
+    },
+    {
+        "name" : "C",
+        "Number" : "6428105424",
+     
+    },
+]
+
+function pro(name,prop){
+    for(let i=0;i<contacts.length;i++){
+        if(contacts[i].name===name){
+        return contacts[i][prop] || "No such property"
+    }
+}
+  return "No such contact";
+}
+
+console.log(pro("A","Number"));
+console.log(pro("B","Likes"));
+console.log(pro("D"));
+console.log(pro("C","Likes"));
+```
+* Output:
+
+```javascript
+1234567890
+[ 'swim' ]
+No such contact
+No such property
+```
+## Some important functions ##
+
+### Math.random() ###
+
+* math.random() generates random fraction numbers between 0 to 0.99 and not 1.
+
+```javascript
+
+function fun(){
+    return Math.random();
+}
+console.log(fun());
+console.log(fun());
+```
+* Output:
+
+```javascript
+0.9379829499406704
+0.7898268261708992
+```
+
+### Math.floor() ###
+ * It returns down to the nearest whole number.
+
+```javascript
+function fun(a){
+    return Math.floor(Math.random()+7) * a;
+}
+console.log(fun(23));
+console.log(fun(13));
+```
+
+* Output:
+
+```javascript
+161
+91
+```
+### Random whole numbers within  a range ###
+
+```javascript
+function range(min,max){
+    return Math.floor(Math.random() *  (max - min + 1)) + min;
+}
+console.log(range(2,16));
+console.log(range(6,100));
+```
+* Output:
+
+```javascript
+11
+40
+```
+### parseInt() function ###
+
+* It takes string and returns as number.
+
+```javascript
+function chech(a){
+    return parseInt(a);
+}
+console.log(89);
+console.log("89");
+console.log("^");
+console.log("k");
+```
+* Output:
+
+```javascript
+89
+89
+^
+k
+```
+
+### parseInt with radix ###
+
+* Radix specifies the base of number or string such as base 2 , base 10.
+
+* parseInt("string",2);
+
+* The parseInt method parses a value as a string and returns the first integer.
+
+* A radix parameter specifies the number system to use:
+
+* 2 = binary, 8 = octal, 10 = decimal, 16 = hexadecimal.
+
+* If radix is omitted, JavaScript assumes radix 10. If the value begins with "0x", JavaScript assumes radix 16.
 
 
 
+```javascript
+function fun(a){
+    console.log(parseInt(a,2));
+console.log(parseInt(a,10));
+console.log(parseInt(a,16));
+console.log(parseInt(a,8));
 
+}
 
+fun("1010");
+fun("76");
+```
 
+* Output:
 
+```javascript
 
+10
+1010
+4112
+520
+NaN
+76
+118
+62
+```
 
+## Ternary operator ##
 
+* The ternary operator has the form of: statement ? statement : statement
 
+* Statements can be expressions or a single value
 
+* NOTE : It does not support {} brackets or multiple statements
 
+```javascript
+function check(a){
+    a==0 ? console.log("IF") : console.log("ELSE");
+}
 
+check(5);
+check(0);
+```
+* Output:
 
+```javascript
+ELSE
+IF
+```
 
+## Ternary operator for multiple conditions  ##
 
+```javascript
+function check(num){
+    return num>0 ? "positive" : num<0 ? "Negatie" : "Zero";
+}
+console.log(check(0));
+console.log(check(56));
+console.log(check(-8));
+```
+* Output:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```javascript
+Zero
+positive
+Negatie
+```
 
 
 
