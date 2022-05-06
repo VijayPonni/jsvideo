@@ -2107,6 +2107,753 @@ Zero
 positive
 Negatie
 ```
+## Difference between var and let keywords ##
+
+* var is the old keyword in javascript we can reassign a variable again with a same name in var but let , const won,t allow.
+
+### var ###
+```javascript
+var variable =10;
+console.log(variable);
+
+var variable ="Vijay";      //it accepts and overwrite the old value
+console.log(variable);
+
+var sum =0;
+sum += variable;
+console.log(sum);
+
+```
+
+* Output:
+
+```javascript
+10
+Vijay
+0Vijay
+```
+
+### let ###
+
+```javascript
+let variable = 36;
+console.log(variable);
+
+let variable = "vijay";   // We cant use like this
+console.log(variable);
+```
+* Output:
+
+```javascript
+/home/guest/Documents/video/jsvideo/varAndLet/let.js:4
+let variable = "vijay";   // We cant use like this
+    ^
+
+SyntaxError: Identifier 'variable' has already been declared
+```
+* NOTE : We must use new variable to assign the new value.
+
+## Strict mode ##
+
+* The strict mode is a feature available since ECMAScript 5 that allows you to place your entire program, or an isolated scope, in a ”strict” operating context.          
+
+* This  strict context prevents certain actions from being taken and throws an exception.
+ 
+* For example, in strict mode you cannot use undeclared variables. Without strict  mode, using an undeclared variable will automatically create that variable.
+
+
+### EXAMPLE:1 ###
+        
+ * You cannot use delete keyword to delete variables in JavaScript
+
+ ### without strict mode ###
+
+ * No errer will be thrown but silently the delete is not working.
+
+ ```javascript
+ var number=78;
+console.log(delete number);   //No error thrown but nember not deleted
+console.log(number);
+ ```
+
+ * Output:
+
+ ```javascript
+ false
+78
+```
+ ### with strict mode ###
+
+ * But using strict will show error.
+
+ ```javascript
+"use strict";
+let variable =56;
+delete variable ;   //error message thrown because of using strict mode.
+ ```
+
+* Output:
+
+```javascript
+delete variable ;
+       ^^^^^^^^
+SyntaxError: Delete of an unqualified identifier in strict mode.
+```
+## Limiting ”strict mode” To A Scope ##
+
+* The strict mode doesn’t have to be enabled globally. It is possible to isolate a single block (or function) scope to strict mode:
+
+### without strict mode in scope ###
+
+* It will not throw error.
+
+```javascript
+var name = "vijay";
+var age =10;
+if(1){
+    gender = "male";     //it is not declared with any keyword but it worked inside scope
+    console.log(gender);
+}
+
+function check(){
+    favourite = "books";
+    console.log(favourite);    //it is not declared with any keyword but it worked inside scope
+}
+check();
+```
+* Output:
+
+```javascript
+male
+books
+```
+### with strict mode ###
+
+* It will throw error if we use undeclared variables.
+
+```javascript
+
+var name="vijay";
+var age = 20;
+
+
+
+function check(){
+    "use strict";
+    gender = "male";
+    console.log(gender);
+}
+check();
+
+```
+* Output:
+
+```javascript
+    gender = "male";
+  ^ReferenceError: gender is not defined
+```
+
+## Scope of var keyword ##
+
+* If it is declaredc globally We can use anywhere in the program.
+```javascript
+var global = 45;  //declared globally
+
+console.log(global);      //global use   accepted
+
+if(1){
+    console.log(global);     //block use  accepted
+}
+
+function check(){
+    console.log(global);     //function use  accepted
+}
+check();
+```
+* Output:
+
+```javascript
+45
+45
+45
+```
+
+* If we declare inside a block it is accesssable anywhere in the program.
+
+```javascript
+var global=10;
+
+if(1){
+    var block = "I am block";     // declaring inside block
+    console.log(block);
+    
+
+}
+console.log(block);     //Using in global accepted
+
+function check(){
+    console.log(block);    //using inside function accepted
+   }
+check();
+```
+
+* Output:
+
+```javascript
+I am block
+I am block
+I am block
+```
+
+* If we declare inside function  , we should only use it indside function.
+
+```javascript
+var global=56;
+
+function check(){
+    var variable = "I am inside function";   //declaring inside function
+    console.log(variable);                    //Using inside function accepted
+}
+check();
+
+
+console.log(variable);           //Using globally not accepted throws error
+
+if(1){
+    console.log(variable);            //Using in another scope out of function not accepted throws error
+} 
+```
+* Output:
+
+```javascript
+I am inside function
+console.log(variable);           //Using globally not accepted throws error
+            ^
+ReferenceError: variable is not defined
+```
+
+## Scope of let keyword ##
+
+* If we declare it in global we can access it anywhere in the program.
+
+```javascript
+let global = "I am global";   //Declared globally
+
+console.log(global);     //Using globally accepted
+
+if(1){
+    console.log(global);     //Using inside block accepted
+}
+
+function check(){
+    console.log(global);     //Using inside function accepted
+}
+check();
+```
+* Output:
+
+```javascript
+I am global
+I am global
+I am global
+```
+* Scope of let is limited to the block statement or expression that it was declared in.
+
+```javascript
+let global="global";
+
+if(1){
+    let block = "I am block";     //Declared inside block
+    console.log(block);            //Accessing inside  block is accepted
+}
+
+console.log(block);           // Accessing in global is not accepted
+
+function check(){
+  console.log(block);               // Accessing in function is not accepted
+}
+check();
+```
+* Output:
+
+```javascript
+I am block
+/home/guest/Documents/video/jsvideo/scopeOfLet/letScopeBlock.js:8
+console.log(block);           // Accessing in global is not accepted
+            ^
+
+ReferenceError: block is not defined
+```
+* If we declare variable inside a functio we can't access it outside the function.
+
+```javascript
+let global = "I am global";
+
+function check(){
+    let variable = "Inside Function ";     //Declared inside function
+    console.log(variable);                 // accessing inside function worked
+}
+check();
+
+console.log(variable);                   //Accessing outsde function not worked
+```
+* Output:
+
+```javascript
+Inside Function 
+/home/guest/Documents/video/jsvideo/scopeOfLet/letScopeFunction.js:9
+console.log(variable);
+^ReferenceError: variable is not defined
+```
+### NOTE: ###
+
+* let keyword restricts it's scope where it declared.But if we want to redeclare the same variable name ,  we can use it in another scope it will not disturb the existing one.
+
+* Example: if we declare a variable a in golbal and set the value to 10. I want to use the same variable a in my function (Or any block) but with different value.
+
+* For that ,we can reassign the same variable with new value in the required function (or in the scope) .
+
+* consider the below example:
+
+```javascript
+let same="I am global variable of let";    //declared in gobal 
+console.log(same);                          //Using in global  produce global value
+
+if(1){
+    let same = "I am block variable of let";    //declared and reassign in block
+    console.log(same);                           //Using inside block will only utilize the reassigned value
+}
+
+function check(){
+    let same = "I am function variable of let";    //declared and reassign in function
+    console.log(same);                             //Using inside function will only utilize the reassigned value
+}
+check();
+
+```
+* Output:
+
+```javascript
+I am global variable of let
+I am block variable of let
+I am function variable of let
+```
+### check scope program to undrstand var and let ###
+
+```javascript
+let same="I am global variable of let";    //declared in gobal 
+console.log(same);                          //Using in global  produce global value
+
+if(1){
+    let same = "I am block variable of let";    //declared and reassign in block
+    console.log(same);                           //Using inside block will only utilize the reassigned value
+}
+
+function check(){
+    let same = "I am function variable of let";    //declared and reassign in function
+    console.log(same);                             //Using inside function will only utilize the reassigned value
+}
+check();
+
+
+```
+* Output:
+
+```javascript
+Block Scope is :  block scope
+Function scope i is :  block scope
+Block Scope is :  block scope
+Function scope i is :  function scope
+```
+## const keyword ##
+
+* const keyword is used for read only variable.So we cannot reassign the variable again in const keyword.
+
+* Always try to follow capitalize the variable name which is declared using const keyword to specify and improve readability of the code.
+
+```javascript
+const VARIABLE = 19;    //declaring using const keyword
+console.log(VARIABLE);
+
+ VARIABLE =49;                   // We can't reassign
+ console.log(VARIABLE);
+```
+* Output:
+
+```javascript
+19
+/home/guest/Documents/video/jsvideo/const/const.js:5
+ VARIABLE =49;                   // We can't reassign
+          ^
+TypeError: Assignment to constant variable.
+```
+## Mutate array declared with const keyword ##
+
+* Mutate means <b> change </b>
+
+* Assigning array with const , we cannot reassign the whole array to new .But we can update each elemets in the array with bracket notations.
+
+### Wrong method ###
+
+```javascript
+const ARRAY =[1,56,789];
+ function edit(){
+     ARRAY = [3,78,654];
+     return ARRAY;
+ }
+ console.log(edit());
+```
+
+* Output:
+
+```javascript
+     ARRAY = [3,78,654];
+           ^
+TypeError: Assignment to constant variable
+```
+
+### Correct method ###
+
+```javascript
+const ARRAY  = [1,3,5];
+
+function edit(){
+    "use strict";
+    ARRAY[0]=2;
+    ARRAY[1]=4;
+    ARRAY[2]=6;
+    ARRAY[3]=8;
+
+    return ARRAY;
+}
+console.log(edit());
+```
+
+* Output:
+
+```javascript
+ [ 2, 4, 6, 8 ]
+```
+## Prevent Object mutation ##
+
+## Object.freeze(objectName) method ##
+
+* whenever we have a object and we don't want to change any property in the objct , we should use object.freeze function.
+
+```javascript
+function demo(){
+    "use strict";
+    const MATH_CONST ={
+        PI : 3.14
+    };
+    Object.freeze(MATH_CONST);
+
+
+     try{
+         MATH_CONST.Pi = 66;
+
+     }catch( ex )
+     {
+         console.log(ex);
+     }
+    return MATH_CONST.Pi;
+}
+
+console.log(demo());
+```
+
+* Output:
+
+```javascript
+guest@stalin:~/Documents/video/jsvideo/const$ node freeze.js
+TypeError: Cannot add property Pi, object is not extensible
+```
+# Arrow functions #
+ * Use arrow functions to write concise anonmuous functions.
+
+ ## Anonymous functions ##
+
+* Funtions does not connatain function name instead declared with variable.
+
+```javascript
+let anonymous = function(){
+    console.log("I am anonymous");
+    return new Date();
+};
+console.log(anonymous());
+```
+* Output:
+
+```javascript
+I am anonymous
+2022-05-06T06:58:47.339Z
+```
+
+ ## Arrow functions ##
+
+ * Whenever we have a anonymous function or normal function we can make it to arrow function  using => symbol and removing function keyword from function.
+
+ ```javascript
+ let arrowFunction = () => { 
+    console.log( "I am arrow function ") 
+     return new Date() ;
+    }
+
+    console.log(arrowFunction());
+```
+* Output:
+
+```javascript
+I am arrow function 
+2022-05-06T07:04:32.863Z
+```
+## Arrow functions with parameters ##
+
+* It is similar to passing the parameters in normal function.
+
+### Ex: Concat two arrays using concat function  ###
+
+* Syntax to conactinate two arrays is:
+  * arrat1.concat(array2);
+
+```javascript
+const arrayConcat = (arr1,arr2) => arr1.concat(arr2);
+
+console.log(arrayConcat([1,4,6],[2,4,7]));
+```
+* Output:
+
+```javascript
+[ 1, 4, 6, 2, 4, 7 ]
+```
+# higher order function #
+
+* In Javascript, functions can be assigned to variables in the same way that strings or arrays can. 
+
+* They can be passed into other functions as parameters or returned from them as well.
+
+* A “higher-order function” is a function that accepts functions as parameters and/or returns a function.
+
+```javascript
+const radius = [1,4,7];
+const diameter = function(radius){
+     return  radius*2;
+} ;
+
+const cal = function (radius,logic) {
+    const res=[];
+    for(let i=0;i<radius.length;i++){
+        res.push(logic(radius[i]));
+    }
+    return res;
+}
+
+const zero = function(radius){
+    return radius - radius;
+
+};
+
+console.log(cal(radius,diameter));
+
+console.log(cal(radius,zero));
+```
+
+* Output:
+
+```javascript
+[ 2, 8, 14 ]
+[ 0, 0, 0 ]
+```
+
+### simple higher order function ###
+
+```javascript
+const array =["Vijay","Surya"];
+
+const gap = function(array){
+    return  " "+array+" ";
+
+ }
+
+const display = function (array,init){
+    const final =[];
+    for(let i=0;i<array.length;i++){
+        final.push(init(array[i]));
+    }
+   return final;
+
+}
+
+
+console.log(display(array,gap));
+```
+* output:
+
+```javascript
+[ ' Vijay ', ' Surya ' ]
+```
+## higher order arrow function with simple example ##
+
+```javascript
+const increament = (num,val=1) => {
+    return num+val;
+}
+
+const res = (logic) => {
+        return logic;
+} 
+console.log(res(increament(12)));
+```
+
+* Output:
+
+```javascript
+13
+```
+
+## rest operator with functional parameter ##
+
+* The rest operator allows us to create a function that takes a variable number of argumets.
+
+* ... --> indicates rest operator.
+
+### Ex:1 ###
+
+```javascript
+function rest(...args) {
+    return args;
+}
+console.log(rest(10,78,77,78));
+```
+
+* Output:
+
+```javascript
+[ 10, 78, 77, 78 ]
+```
+### Ex:2 ###
+
+```javascript
+function sum(...args){
+     return args.reduce((a,b) => a+b,0)
+};
+console.log(sum(1,4,6,78));
+```
+
+* Output:
+
+```javascript
+89
+```
+## Spread operator ##
+
+* The spread operator expands the already existing array.
+
+* It also denoted with ...
+
+### EX: ###
+
+```javascript
+const arr1=['Jan','Feb','Mar'];
+
+arr2=[];
+
+function get(arr2)
+{
+   return arr2=[arr2,...arr1];
+}
+console.log(get("ji"));
+console.log(get(78));
+```
+* Output:
+
+```javascript
+[ [ 'ji' ], 'Jan', 'Feb', 'Mar' ]
+[ [ 78 ], 'Jan', 'Feb', 'Mar' ]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

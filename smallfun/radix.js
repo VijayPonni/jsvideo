@@ -7,4 +7,4 @@ console.log(parseInt(a,8));
 }
 
 fun("1010");
-fun("76");
+fun("80");
