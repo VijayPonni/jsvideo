@@ -2771,34 +2771,537 @@ console.log(get(78));
 [ [ 'ji' ], 'Jan', 'Feb', 'Mar' ]
 [ [ 78 ], 'Jan', 'Feb', 'Mar' ]
 ```
+## DEstructuring assignment to assign variables from object ##
+
+ * This is the syntax for neatly asssigning values taken directly from an object to a variable.
+### Old Method ###
+ ```javascript
+ let  object = {
+    a : 2.5,
+    b : 3.7,
+    c : 4.89
+}
+
+console.log(object);
+
+let  x = object.a;
+let  y = object.b;
+let  z = object.c;
+
+console.log(x,y,z);
+ ```
+
+* Output:
+
+```javascript
+{ a: 2.5, b: 3.7, c: 4.89 }
+2.5 3.7 4.89
+```
+### New method ###
+
+```javascript
+let  object = {
+    a : 56,
+    b : 78,
+    c : 678
+}
+console.log(object);
+
+ const { a : x , b :y , c:z } = object;  // NOTE : DON't use : object = const {   } like thay.(It will show error)
+
+ console.log(x,y,z);
+```
+
+* Output:
+
+```javascript
+{ a: 56, b: 78, c: 678 }
+56 78 678
+```
+
+## EX : Show temperature  (Paasing object as argument )##
+
+```javascript
+const AVG_TEMP = {
+    Monday : 97.0,
+    Tuesday : 91
+}
+console.log(AVG_TEMP);
+
+
+
+function destruct(temp_list){
+
+     const { Monday : Today , Tuesday : Tomorrow }= temp_list;
+
+     console.log(Today,Tomorrow);
+
+}
+destruct(AVG_TEMP);
+```
+* Output:
+
+```javascript
+{ Monday: 97, Tuesday: 91 }
+97 91
+```
+## Ex : Nested object destructure for forcast program ##
+
+```javascript
+let temp = {
+    Monday : { max : 93 , min : 88 },
+    Tuesday : { max : 95 , min : 80 }
+} 
+console.log(temp);
+
+function forcastOfToday(tempToday){
+
+   const { Monday : { max : high , min : low }} =  tempToday
+
+    console.log("Today FORCAST :");
+    console.log("Expected High: " + high + "\n "+ "Expected Low : " + low);
+}
+forcastOfToday(temp);
+```
+
+* Output:
+
+```javascript
+{ Monday: { max: 93, min: 88 }, Tuesday: { max: 95, min: 80 } }
+Today FORCAST :
+Expected High: 93
+ Expected Low : 88
+```
+
+## DestructuringAssignment to assign variables from Array ##
+
+* It is slightlt differenet from objects .
+
+* Synatx : const {var 1 , var 2 ,..} = array;
+
+* We should give space between variables to assign particular variable ti paricular arry element.
+
+```javascript
+let array = [10,4,67,4];
+console.log(array);
+
+const [ a, b, c,d ] = array; //Assigning variables a,b,cd
+
+console.log(a,b,c,d);
+
+
+let array2 = [1,6,7];
+
+console.log(array2);
+
+const [x, , y] =array2;     //Assigning x=1 and y = 7 (need to give space between variable names according to our wish)
+console.log(x,y);
+```
+
+* Output:
+
+```javascript
+[ 10, 4, 67, 4 ]
+10 4 67 4
+[ 1, 6, 7 ]
+1 7
+```
+### Switching the variables using destructure assignment in array ###
+
+```javascript
+let array = [1,2,3];
+console.log(array);
+
+const [a,,c]=array;
+console.log(a,c);
+
+let x=10;
+let y=20;
+console.log("Befor Switching : x and y: ", x,y);
+swap = () => {
+     [x,y] = [y,x] ;
+     console.log("After Switching : x and y : " , x ,y);
+}
+swap();
+```
+* Output:
+
+```javascript
+[ 1, 2, 3 ]
+1 3
+Befor Switching : x and y:  10 20
+After Switching : x and y :  20 10
+```
+## Using rest to avoide some elements in array ##
+
+```javascript
+const arr = [1,2,3,4,5];
+
+function lastTWo(){
+    const[a,b,c,...rest] = arr;
+    return rest;
+
+}
+console.log("Before : ", arr);
+console.log("After : ", lastTWo());
+```
+
+* Output:
+
+```javascript
+Before :  [ 1, 2, 3, 4, 5 ]
+After :  [ 4, 5 ]
+```
+
+## Passing object as parameter in function and utilizing only the necessary properties with destructing assignment  ##
+
+* It is mostly used in API calls and ajax methods .
+
+```javascript
+let obj = {
+    num : 45,
+    num2 : 56
+}
+console.log(obj);
+
+function add(para)
+{
+return para.num+ para.num2;
+}
+
+console.log(add(obj));
+
+
+//destructing method
+
+let object = {
+    a : 1,
+    b : 2
+}
+console.log(object);
+
+const demo = (function(){
+    return function demo( {a,b } ){
+         return a + b;
+    }
+})();
+console.log(demo(object));
+```
+* Output:
+
+```javascript
+{ num: 45, num2: 56 }
+101
+{ a: 1, b: 2 }
+3
+```
+## Template string ##
+### Ex : 1 excercise program ###
+
+```javascript
+let obj = {
+
+    first : ["number1","number2"],
+    second : ["String1","String2"] ,
+    third : ["array1","Array2"]
+
+}
+
+
+function displayWithTemplate(arr){
+   
+     let  res=[];
+    for(let i=0;i<arr.length;i++){
+       
+        res.push(`<li class="text-warning"> ${arr[i]}`);
+    }
+    return res;
+
+}
+console.log(displayWithTemplate(obj.first));
+console.log(displayWithTemplate(obj.second));
+```
+
+* Output:
+
+```javascript
+[
+  '<li class="text-warning"> number1',
+  '<li class="text-warning"> number2'
+]
+[
+  '<li class="text-warning"> String1',
+  '<li class="text-warning"> String2'
+]
+```
+
+## Simple fields ##
+ 
+* It easily defines object literal.
+
+```javascript
+console.log("Before simplifying : \n");
+function demo(name ,age ){
+     return {
+         name : name,
+         age : age
+     }
+
+}
+console.log(demo("Vijay",20));
+
+console.log("\n");
+console.log("After Simplifying:\n");
+
+ let demo2 = (name ,age ) =>   ( {name ,age } ) ;
+  
+console.log(demo2("Vijay",20));
+```
+* Output:
+
+```javascript
+Before simplifying : 
+
+{ name: 'Vijay', age: 20 }
+
+
+After Simplifying:
+
+{ name: 'Vijay', age: 20 }
+```
+
+## Declarative functions inside objects in simple way ##
+
+### EX: 1 Normal method ###
+
+```javascript
+const object = {
+    name : "hello",
+    method : function show(vari){
+        console.log(`I am ${vari} method `);
+    }
+}
+object.method("normal");
+```
+* Output:
+
+```javascript
+I am normal method 
+```
+### EX: 2 Another simple method ###
+
+```javascript
+let object = {
+    name : "vijay",
+    method(vari){
+       console.log(`I am ${vari} method `);
+    }
+}
+object.method("simple");
+```
+* Output:
+
+```javascript
+I am simple method 
+```
+
+## class ##
+
+* A JavaScript class is not an object.
+
+* It is a template for JavaScript objects.
+
+### Syntax to create a class ###
+
+```javascript
+
+class ClassName {
+  constructor() { ... }
+}
+method_1(){
+
+}
+.
+.
+.
+method_n(){
+
+}
+
+```
+
+## Important to note in class ##
+
+* constructor is the default keyword to generate object properties and get the parameters as properties.
+
+* this.parametername is necessary inside constructor to create properties.
+
+* We can create n number of methods using any name .
+
+* After creating class , we must assign it to constructor with other name and it should be called as fllows:
+
+```javascript
+let newClassName = new className("argument", argument);
+```
 
 
 
 
+### Ex : 1 Simple class to create a  family object ###
+
+```javascript
+class family {
+    constructor(name ,age){
+        this.name =name,
+        this.age = age
+
+    }
+    method(text){
+        return text;
+    }
+}
+
+const show = new family("vijay",89);
+console.log(show);
+console.log(show.method("Brilliant vijay"));
+```
+* Output:
+
+```javascript
+family { name: 'vijay', age: 89 }
+Brilliant vijay
+```
+
+## Ex : 2 ## 
+
+```javascript
+
+function show(){
+
+
+class vegetable {
+    constructor(name){
+        this.name=name;
+    }
+}
+return vegetable;
+}
+
+let func = show();
+
+let veg = new func("petroot");
+
+console.log(veg.name);
+```
+* Output:
+
+```javascript
+petroot
+```
+
+## getter and setter ##
+
+* Getters and setters allow you to define Object Accessors (Computed Properties).
+
+* JavaScript Getter (The get Keyword)
+
+* JavaScript Setter (The set Keyword)
+
+* NOTE: whenever we create a variable with _ , it is only accessable within the scope.
+
+```javascript
+function makeclass(){
+    class thermostate{
+        constructor(temp){
+            this._temp = 5/9 * (temp-32);
+
+        
+         }   
+         get temperature(){
+            return this._temp;
+
+        }
+
+        set temperature(updatedTemp){
+            return this._temp = updatedTemp;
+
+        }
+    }
 
 
 
+    return thermostate;
+}
+
+const thermostate = makeclass();
+
+const thermos = new thermostate(76);
+
+let temp = thermos.temperature;
+
+thermos.temperature=26;
+
+temp = thermos.temperature;
+console.log(temp);
+```
+
+* Output:
+
+```javascript
+26
+```
+
+## import and export ## 
+
+### IMPORT and EXPORT methods {modules} ###
+###  { Require method} ###
 
 
+* Consider 2  .js files
+   * 1 .html file
+   * Write your functions in  any one .js files to export them
+   * In another .js file just get the function using require keyword
+   * Just link the .js file which is  getting to .html file.
+   * Kindly refer the following  process.
 
+### Ex : ###
 
+### html file ###
+```javascript
+<!DOCTYPE html>
+<head>
+   <title> JAVA SCRIPT </title>  
+   <script src="./vijay.js">   //just link the .js file
+ 
+   </script>
+</head>
+ 
+<body></body>
+</html>
+```
+### js file to execute (vijay.js) ###
 
+```javascript
 
+const { add } = require("./math.js");  //use require keyword ,call a
+                                       //.js file which contains functions
 
+console.log(add(100,48));              //call the function here
+console.log(add(12,56));
+```
+### js file to export (math.js) ###
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+```javascript
+function add(a,b){
+    return a+b;
+ }
+  
+  
+ module.exports={          //use module.exports to export functions
+    add
+ }
+ 
+```
 
 
 
