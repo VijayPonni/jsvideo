@@ -3413,14 +3413,24 @@ setTimeout( () => { clearInterval(timer); } , 1000 );  // It stops the execution
 * function binding helps us to fix the this keyword bugs when objects are used as callbacks or arguments by binding the object with functions.
 
 * Syntax : let name = functionNmae.bind(context);
-```javascript
 
+```javascript
+let display = {
+    name : "vijay"
+}
+
+function showName(){
+    console.log(this.name);
+}
+
+let functionBind = showName.bind(display);
+functionBind();
 ```
 
 * Output:
 
 ```javascript
-
+vijay
 ```
 
 
