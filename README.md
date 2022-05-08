@@ -3303,6 +3303,162 @@ function add(a,b){
  
 ```
 
+# Some advanced concepts in javs script # 
+
+### Here is the video reference : -->  <a src=" https://www.youtube.com/watch?v=IljVmcDDrOg" > Click me </a>     ###
+
+## Recursion ##
+
+* A recursive function is a function that calls itself until it doesn’t. And this technique is called recursion.
+
+## Ex : To findpower of a number ##
+
+```javascript
+function powerOfNumber(x,n){
+    if(n==1){
+        return x;
+    }
+    else{
+        return x * Math.pow(x,n-1);
+    }
+
+}
+console.log(powerOfNumber(2,1));
+console.log(powerOfNumber(3,3));
+```
+* Output:
+
+```javascript
+2
+27
+```
+## closure ##
+
+* closure is a function that remenbers it's outer variables and can access them.
+
+```javascript
+   let add =  ( function (){
+       console.log("hi");
+      var count=0;
+      return  function () { count+=1;  return  count ; }
+   } )  ();
+   console.log(add());
+   console.log(add());
+   console.log(add());
+```
+
+* output:
+
+```javascript
+hi
+1
+2
+3
+```
+
+## The new function ##
+
+* It is other way of writing functions using new keyword.
+
+* we can pass function body as argument in this method.
+
+* It is rarely used and sometimes it does not have any alternative.
+
+## Syntax for new function ##
+
+* let zfunctionName = new Function ('parameter1','parameter2','function body');
+
+### Ex : ###
+
+```javascript
+let sub = new Function('a','b','return a-b;' );
+console.log(sub(1,1));
+console.log(sub(3,1));
+```
+* Output:
+
+```javascript
+0
+2
+```
+## set Timeout() ##
+
+* Allows us to run a certain function after particular time.
+
+```javascript
+function show(){
+    console.log("Hi");
+}
+show();    //normal function call prints immediately
+setTimeout(show,1000);    //prints 1000 millliseconds afer delay 
+```
+* Output:
+
+```javascript
+Hi
+Hi   (delay)
+```
+
+## setInterval ##
+
+* it allows to use certain function to use it in a particular interval of time.
+
+```javascript
+let timer = setInterval( () => console.log("hi")  , 2000 );  // it prinys hi for every 2000 millliseconds gap
+
+setTimeout( () => { clearInterval(timer); } , 1000 );  // It stops the execution
+```
+## function binding ##
+
+* function binding helps us to fix the this keyword bugs when objects are used as callbacks or arguments by binding the object with functions.
+
+* Syntax : let name = functionNmae.bind(context);
+```javascript
+
+```
+
+* Output:
+
+```javascript
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
