@@ -1679,12 +1679,12 @@ function update(id,prop,value){
     
 
     else {
-        if(id===collection[id]){
+        {
         collection[id][prop]= value;
         }
       
 
-    }
+    
       return collection;
 }
 update("1","Name","");
@@ -1707,8 +1707,8 @@ Original data :
 Updated data :
  {
   '1': { Things: [ 'bag,shirt' ] },
-  '2': { Name: 'Surya', age: 22, Things: [ 'bag,shirt', 'purse' ] },
-  '3': { Name: 'kumar', Things: [ "['a bag','a plate']" ] }
+  '2': { Name: 'Ashwin', age: 22, Things: [ 'bag,shirt', 'purse' ] },
+  '3': { Name: 'jo', Things: [ "['a bag','a plate']" ] }
 }
 ```
 ### NOTE : JSON.parse method  ###

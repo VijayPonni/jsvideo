@@ -29,12 +29,12 @@ function update(id,prop,value){
     
 
     else {
-        if(id===collection[id]){
+        
         collection[id][prop]= value;
         }
       
 
-    }
+    
       return collection;
 }
 update("1","Name","");
