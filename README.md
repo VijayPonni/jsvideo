@@ -3305,7 +3305,7 @@ function add(a,b){
 
 # Some advanced concepts in javs script # 
 
-### Here is the video reference : -->  <a src=" https://www.youtube.com/watch?v=IljVmcDDrOg" > Click me </a>     ###
+* Here is the video reference : -->  <a href = "https://www.youtube.com/watch?v=IljVmcDDrOg" > Click me </a>     
 
 ## Recursion ##
 
@@ -3432,6 +3432,89 @@ functionBind();
 ```javascript
 vijay
 ```
+
+## prototype ##
+
+## Prototype inheritence in javascript ## 
+
+* By assignung with proto we can get the features of one objcet to object.
+
+```javascript
+let dog = {
+  name : "tom"
+}
+
+let cat = {
+    healthy : "no"
+}
+
+cat.proto= dog;
+
+console.log(cat.healthy);
+console.log(cat.name);   //not work outdated method
+```
+* Output:
+
+```javasctipt
+no
+undefined
+```
+
+## new method in prototype inhertance ##
+
+* We should create new objetby Object.create method.
+
+```javascript
+let pet = {
+   
+eats : true
+};
+
+let dog =Object.create(pet);
+
+console.log(dog.eats);
+
+console.log(Object.getPrototypeOf(dog)===pet);
+
+Object.setPrototypeOf(dog,{})
+```
+* Output:
+
+```javascript
+true
+true
+```
+## error handling ##
+
+* The errors need to be handled using try catch block.
+
+* the try block checks for error and catch block handles the error.
+
+```javascript
+try {  
+    console.log(a);   //Using undeclared cariable
+}catch( err ) {
+ console.log("error");   //this part executes
+}
+```
+* Output:
+
+```javascript
+error
+```
+## Generators ##
+
+* Generators are special class of functions that simplify the task of writing iterators.
+
+* It produces series of resulr instead of single value.
+
+
+
+
+
+
+
+
 
 
 
